@@ -1,0 +1,50 @@
+<!DOCTYPE html> <!-- Document type declaration -->
+<html lang="en"> <!-- Language declaration -->
+<head>
+    <meta charset="UTF-8"> <!-- Character encoding declaration -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport declaration -->
+    <title>Toast Notification</title> <!-- Title of the document -->
+    <link rel="stylesheet" href="Toast_Notification.css"> <!-- Link to external CSS file -->
+    <!--https://fontawesome.com/-->
+    <script src="https://kit.fontawesome.com/30c9d8d72a.js" crossorigin="anonymous"></script> <!-- Font Awesome script -->
+</head>
+<body>
+    <div class="buttons">
+        <button onclick="showToast(successMsg)">Success</button> <!-- Button for success toast -->
+        <button onclick="showToast(errorMsg)">Error</button> <!-- Button for error toast -->
+        <button onclick="showToast(invalidMsg)">Invalid</button> <!-- Button for invalid input toast -->
+    </div>
+    <div id="toastBox"></div> <!-- Container for toast notifications -->
+
+<script> 
+    // JavaScript code to handle toast notifications
+    let toastBox=document.getElementById('toastBox'); // Reference to toast container
+    // Messages for different toast notifications
+    let successMsg='<i class="fas fa-check"></i> Successfully submitted'; // Success message
+    let errorMsg='<i class="fas fa-times"></i> Please fix the error!'; // Error message
+    let invalidMsg='<i class="fas fa-exclamation"></i> Invalid input, check again'; // Invalid input message
+    
+    // Function to display toast notifications
+    function showToast(msg) {
+        let toast=document.createElement('div'); // Create toast element
+        toast.classList.add('toast'); // Add class to toast
+        toast.innerHTML=msg; // Set toast message
+        toastBox.appendChild(toast); // Append toast to container
+        
+        // Check message content for type of toast notification and apply appropriate style
+        if (msg.includes('error')) { // Check if error message
+            toast.classList.add('error'); // Apply error style
+        }
+        if (msg.includes('Invalid')) { // Check if invalid input message
+            toast.classList.add('invalid'); // Apply invalid input style
+        }
+        
+        // Remove toast after 6 seconds
+        setTimeout(()=>{
+            toast.remove(); // Remove toast from DOM
+        },6000); // Set timeout for 6 seconds
+    }
+</script>
+
+</body>
+</html>
